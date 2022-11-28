@@ -50,7 +50,7 @@ def main(wf):
     # Loop through the returned posts and add an item for each to
     # the list of results for Alfred
     for pullreq in pullreqs:
-        wf.add_item(title="{} - {}".format(pullreq["pullRequestId"], pullreq["title"]),
+        wf.add_item(title="{} - {}".format(pullreq["pullRequestId"], pullreq["title"], pullreq["targetRefName"].replace("refs/heads/","")),
                     subtitle="{} ({})".format(pullreq["repository"]["name"], pullreq["createdBy"]["displayName"]),
                     arg="https://dev.azure.com/{}/{}/_git/{}/pullrequest/{}".format(ORG_NAME, pullreq['repository']['project']['name'], pullreq['repository']['name'], pullreq["pullRequestId"]),
                     valid=True,
